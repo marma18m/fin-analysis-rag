@@ -1,0 +1,26 @@
+[project]
+name = "fin-analysis-rag"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "marta martinez",email = "marta.martinez9@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11,<4.0"
+dependencies = [
+    "langchain-text-splitters (>=0.3.8,<0.4.0)",
+    "langchain-community (>=0.3.27,<0.4.0)",
+    "langgraph (>=0.5.3,<0.6.0)",
+    "ipykernel (>=6.29.5,<7.0.0)",
+    "langchain-openai (>=0.3.28,<0.4.0)",
+    "langchain-qdrant (>=0.2.0,<0.3.0)",
+    "pypdf (>=5.8.0,<6.0.0)"
+]
+
+[tool.poetry]
+package-mode = false
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

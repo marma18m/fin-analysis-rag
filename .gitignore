@@ -1,0 +1,13 @@
+__pycache__/
+.DS_Store
+.ipynb_checkpoints/
+out/
+live/
+scratch*.ipynb
+.direnv/
+.config/
+.jupyter/
+.local/
+.npm/
+.env
+qdrant_data/
