@@ -49,3 +49,9 @@ source $(poetry env info --path)/bin/activate
 
 
 poetry env info --path
+
+poetry install
+
+para descargar datos: https://drive.google.com/drive/folders/1yJQ97vlSjVoOUAe31synzyXuyyDHZ2TI?usp=sharing
+
+deszipearlo y moverlo al raiz del repo

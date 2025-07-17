@@ -22,7 +22,7 @@ settings = Settings()
 app = FastAPI(title="RAG API for Financial Docs")
 
 # Prepare Qdrant vector store
-client = QdrantClient(path=settings.qdrant_url)
+client = QdrantClient(settings.qdrant_url)
 embeddings = OpenAIEmbeddings(model="text-embedding-3-small", api_key=settings.openai_api_key)
 vector_store = QdrantVectorStore(client=client, collection_name="fin-docs", embedding=embeddings)
 
