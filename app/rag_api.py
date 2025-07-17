@@ -1,3 +1,5 @@
+import logging
+
 from fastapi import FastAPI, HTTPException
 from qdrant_client import QdrantClient
 from langchain_qdrant import QdrantVectorStore
@@ -7,9 +9,16 @@ from langchain import hub
 from app.settings import Settings
 from app.models import QuestionRequest, QuestionResponse
 
+# Setup logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s"
+)
+logger = logging.getLogger(__name__)
+
 settings = Settings()
 
-# Inizialize FastAPI app
+# Initialize FastAPI app
 app = FastAPI(title="RAG API for Financial Docs")
 
 # Prepare Qdrant vector store
@@ -25,9 +34,12 @@ prompt = hub.pull("rlm/rag-prompt")
 @app.post("/rag")
 async def rag_query(rag_request: QuestionRequest):
     try:
+        logger.info(f"Received question: {rag_request.question}")
         # Retruieve relevant documents
         docs_with_scores = vector_store.similarity_search_with_score(rag_request.question, k=5)
+        logger.info(f"Retrieved {len(docs_with_scores)} documents from vector store")
         if not docs_with_scores:
+            logger.warning("No relevant documents found.")
             raise ValueError("No relevant documents found.")
 
         # Prepare context
@@ -36,9 +48,11 @@ async def rag_query(rag_request: QuestionRequest):
 
         # Generate answer
         answer = llm.invoke(prompt_input)
+        logger.info("Successfully generated answer.")
         return QuestionResponse(question=rag_request.question, answer=answer.content)
 
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"RAG query failed: {str(e)}", exc_info=True)
+        raise HTTPException(status_code=500, detail="Internal server error")
     
 # Run the app with: uvicorn app.rag_api:app --reload
