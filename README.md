@@ -48,10 +48,26 @@ source $(poetry env info --path)/bin/activate
 ```
 
 
-poetry env info --path
+### 3. Download the Data
 
-poetry install
+To test the system, you need to download a sample dataset. Use the following link:
 
-para descargar datos: https://drive.google.com/drive/folders/1yJQ97vlSjVoOUAe31synzyXuyyDHZ2TI?usp=sharing
+🔗 [Google Drive – Sample Documents](https://drive.google.com/drive/folders/1yJQ97vlSjVoOUAe31synzyXuyyDHZ2TI?usp=sharing)
 
-deszipearlo y moverlo al raiz del repo
+After downloading the `.zip` file, unzip it and move the resulting folder (`data`) to the root of the repository:
+
+```bash
+unzip data.zip
+mv data fin-doc-rag/
+```
+
+Or just simply unzip it via GUI
+
+Ensure the directory structure looks like this:
+
+```
+fin-doc-rag/
+├── data/
+├── app/
+├── ...
+```
