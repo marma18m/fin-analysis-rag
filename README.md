@@ -46,3 +46,6 @@ source $(poetry env info --path)/bin/activate
 ```bash
 & "$env:USERPROFILE\.cache\pypoetry\virtualenvs\<your-env>\Scripts\Activate.ps1"
 ```
+
+
+poetry env info --path
