@@ -11,3 +11,4 @@ scratch*.ipynb
 .npm/
 .env
 qdrant_data/
+data/
